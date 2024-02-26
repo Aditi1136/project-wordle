@@ -1,17 +1,22 @@
 import React from 'react'
 
-const GuessInput = () => {
-    const [guessInput, setGuessInput] = React.useState(" ")
 
+const GuessInput = ({handleSubmitOnRender}) => {
+    const [guessInput, setGuessInput] = React.useState("")
+    
     function handleEnter(event){
         event.preventDefault()
         console.log({guessInput})
-        setGuessInput(' ')
-        
+        handleSubmitOnRender(guessInput)
+        setGuessInput('') 
     }
   return (
-    <form onSubmit={handleEnter}>
-        <label htmlFor='guess'>GuessInput</label>
+    <>
+    
+   
+    <form className="guess-input-wrapper"
+    onSubmit={handleEnter}>
+        <label htmlFor='guess'>GUESS THE WORD</label>
         <input
         type='text'
         required
@@ -20,13 +25,14 @@ const GuessInput = () => {
         title="5 letter word"
         value={guessInput}
         onChange={(event) => {
-          const nextGuess = event.target.value
+          const nextGuess = event.target.value.toUpperCase()
           setGuessInput(nextGuess);
         }}
         id="guess"
         />
         
     </form>
+    </>
   )
 }
 
