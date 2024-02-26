@@ -8,7 +8,9 @@ function App() {
 
       <div className="game-wrapper">
         <Game />
+       
       </div>
+      
     </div>
   );
 }
