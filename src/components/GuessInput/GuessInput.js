@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const GuessInput = ({handleSubmitOnRender}) => {
+const GuessInput = ({handleSubmitOnRender, guessStatus}) => {
     const [guessInput, setGuessInput] = React.useState("")
     
     function handleEnter(event){
@@ -9,17 +9,21 @@ const GuessInput = ({handleSubmitOnRender}) => {
         console.log({guessInput})
         handleSubmitOnRender(guessInput)
         setGuessInput('') 
+        
     }
+
+
   return (
     <>
-    
-   
+
     <form className="guess-input-wrapper"
     onSubmit={handleEnter}>
         <label htmlFor='guess'>GUESS THE WORD</label>
+       
         <input
         type='text'
         required
+        disabled ={guessStatus !=='running'}
         maxLength={5}
         pattern="[a-zA-Z]{5}"
         title="5 letter word"
